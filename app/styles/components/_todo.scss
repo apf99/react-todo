@@ -5,15 +5,11 @@
   padding: 1rem;
   transition: background .3s ease;
 
-  input {
+  p, input {
     margin: 0;
   }
 
-  p {
-    margin: 0 0 0 1rem;
-  }
-
-  > first-child {
+  > :first-child {
     margin-right: 1rem;
   }
 

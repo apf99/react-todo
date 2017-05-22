@@ -15,7 +15,7 @@ describe('TodoAPI', () => {
     it('should set valid todos array', () => {
       var todos = [{
         id: 23,
-        text: 'test all files',
+        test: 'test all files',
         completed: false
       }];
       TodoAPI.setTodos(todos);
@@ -23,13 +23,13 @@ describe('TodoAPI', () => {
       var actualTodos = JSON.parse(localStorage.getItem('todos'));
 
       expect(actualTodos).toEqual(todos);
+    });
 
-      it('should not set invalid todos array', () => {
-        var badTodos = {a: 'b'};
-        TodoAPI.setTodos(badTodos);
+    it('should not set invalid todos array', () => {
+      var badTodos = {a: 'b'};
+      TodoAPI.setTodos(badTodos);
 
-        expect(localStorage.getItem('todos')).toBe(null);
-      });
+      expect(localStorage.getItem('todos')).toBe(null);
     });
   });
 
@@ -42,12 +42,13 @@ describe('TodoAPI', () => {
     it('should return todo if valid array in localstorage', () => {
       var todos = [{
         id: 23,
-        text: 'test all files',
+        test: 'test all files',
         completed: false
       }];
 
       localStorage.setItem('todos', JSON.stringify(todos));
       var actualTodos = TodoAPI.getTodos();
+
       expect(actualTodos).toEqual(todos);
     });
   });
@@ -57,13 +58,13 @@ describe('TodoAPI', () => {
       id: 1,
       text: 'Some text here',
       completed: true
-    }, {
+    },{
       id: 2,
       text: 'Other text here',
       completed: false
-    }, {
+    },{
       id: 3,
-      text: 'Some more text here',
+      text: 'Some text here',
       completed: true
     }];
 
@@ -72,9 +73,9 @@ describe('TodoAPI', () => {
       expect(filteredTodos.length).toBe(3);
     });
 
-    it('should return only non-completed items if showCompleted is false', () => {
+    it('should return non-completed todos when showCompleted is false', () => {
       var filteredTodos = TodoAPI.filterTodos(todos, false, '');
-      expect(filteredTodos.length).toBe(1)
+      expect(filteredTodos.length).toBe(1);
     });
 
     it('should sort by completed status', () => {
@@ -91,14 +92,5 @@ describe('TodoAPI', () => {
       var filteredTodos = TodoAPI.filterTodos(todos, true, '');
       expect(filteredTodos.length).toBe(3);
     });
-
-
-
-
-
-
-
-
   });
-
 });
